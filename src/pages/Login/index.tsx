@@ -20,6 +20,7 @@ const schema = yup
 const Login = () => {
   const {
     control,
+    watch,
     formState: { errors, isValid },
   } = useForm<IFormLogin>({
     resolver: yupResolver(schema),
@@ -27,7 +28,7 @@ const Login = () => {
     defaultValues,
     reValidateMode: "onChange",
   });
-
+  const form =watch();
   return (
     <Container>
       <LoginContainer>
@@ -36,7 +37,7 @@ const Login = () => {
           <Spacing />
           <Input
             name="email"
-            placeholder="Email"
+            placeholder="Email"{...register("email")}
             control={control}
             errorMessage={errors?.email?.message}
           />
@@ -44,7 +45,7 @@ const Login = () => {
           <Input
             name="password"
             type="password"
-            placeholder="Senha"
+            placeholder="Senha"{...register("password")}
             control={control}
             errorMessage={errors?.password?.message}
           />
